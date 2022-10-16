@@ -2,7 +2,7 @@
 
 import React, { Suspense, experimental_use as use, useTransition } from 'react';
 
-import { createStore } from 'zustand';
+import createStore from 'zustand/vanilla';
 import { useZustand } from 'use-zustand';
 
 const postStore = createStore<{
