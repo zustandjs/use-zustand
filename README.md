@@ -1,5 +1,10 @@
 # use-zustand
 
+[![CI](https://img.shields.io/github/workflow/status/dai-shi/use-zustand/CI)](https://github.com/dai-shi/use-zustand/actions?query=workflow%3ACI)
+[![npm](https://img.shields.io/npm/v/use-zustand)](https://www.npmjs.com/package/use-zustand)
+[![size](https://img.shields.io/bundlephobia/minzip/use-zustand)](https://bundlephobia.com/result?p=use-zustand)
+[![discord](https://img.shields.io/discord/627656437971288081)](https://discord.gg/MrQdmzd)
+
 Another custom hook to use [Zustand](https://github.com/pmndrs/zustand) vanilla store
 
 ## Install
