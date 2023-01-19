@@ -16,7 +16,7 @@ npm install zustand use-zustand
 ## Usage
 
 ```jsx
-import createStore from 'zustand/vanilla';
+import { createStore } from 'zustand/vanilla';
 import { useZustand } from 'use-zustand';
 
 const countStore = createStore((set) => ({
@@ -44,7 +44,7 @@ which is identical to `useZustand` in terms of the usage.
 import { createStore, useStore } from 'zustand';
 
 // `createStore` is the same with:
-import createStore from 'zustand/vanilla';
+import { createStore } from 'zustand/vanilla';
 ```
 
 `useStore` is implemented with `useSyncExternalStore` which is
