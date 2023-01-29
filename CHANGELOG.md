@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+
+## [0.0.2] - 2023-01-29
 ### Changed
 - fix: inline selectors #2
 
