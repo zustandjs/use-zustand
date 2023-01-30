@@ -7,7 +7,8 @@ export function useZustand<State, Slice>(
   selector: (state: State) => Slice,
   areEqual: (a: Slice, b: Slice) => boolean = Object.is,
 ) {
-  const slice = useMemo(() => selector(store.getState()), [store, selector]);
+  const state = store.getState();
+  const slice = useMemo(() => selector(state), [state, selector]);
   const [[sliceFromReducer, storeFromReducer], rerender] = useReducer<
     Reducer<readonly [Slice, StoreApi<State>], boolean | undefined>,
     undefined
@@ -16,7 +17,11 @@ export function useZustand<State, Slice>(
       if (fromSelf) {
         return [slice, store];
       }
-      const nextSlice = selector(store.getState());
+      const nextState = store.getState();
+      if (Object.is(state, nextState) && prev[1] === store) {
+        return prev;
+      }
+      const nextSlice = selector(nextState);
       if (areEqual(prev[0], nextSlice) && prev[1] === store) {
         return prev;
       }
