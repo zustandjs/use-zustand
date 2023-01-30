@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Changed
+- fix: reduce calling selector for updates #4
 
 ## [0.0.2] - 2023-01-30
 ### Changed
