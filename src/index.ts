@@ -13,16 +13,16 @@ export function useZustand<State, Slice>(
     Reducer<readonly [Slice, StoreApi<State>, State], boolean | undefined>,
     undefined
   >(
-    (prev, passive?: boolean) => {
-      if (passive) {
+    (prev, fromSelf?: boolean) => {
+      if (fromSelf) {
         return [slice, store, state];
       }
       const nextState = store.getState();
-      if (Object.is(prev[1], nextState) && prev[2] === store) {
+      if (Object.is(prev[2], nextState) && prev[1] === store) {
         return prev;
       }
       const nextSlice = selector(nextState);
-      if (areEqual(prev[0], nextSlice) && prev[2] === store) {
+      if (areEqual(prev[0], nextSlice) && prev[1] === store) {
         return prev;
       }
       return [nextSlice, store, nextState];
