@@ -1,7 +1,7 @@
 {
   "name": "use-zustand",
   "description": "Another custom hook to use Zustand vanilla store",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Daishi Kato",
   "repository": {
     "type": "git",
