@@ -1,10 +1,12 @@
 # Change Log
 
 ## [Unreleased]
+
+## [0.0.4] - 2023-01-30
 ### Changed
 - fix: reduce calling selector for updates #4
 
-## [0.0.2] - 2023-01-30
+## [0.0.3] - 2023-01-30
 ### Changed
 - fix: a bug in #2 #3
 
