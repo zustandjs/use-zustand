@@ -1,6 +1,6 @@
 # use-zustand
 
-[![CI](https://img.shields.io/github/actions/workflow/status/dai-shi/use-zustand/ci.yml?branch=main)](https://github.com/dai-shi/use-zustand/actions?query=workflow%3ACI)
+[![CI](https://img.shields.io/github/actions/workflow/status/zustandjs/use-zustand/ci.yml?branch=main)](https://github.com/zustandjs/use-zustand/actions?query=workflow%3ACI)
 [![npm](https://img.shields.io/npm/v/use-zustand)](https://www.npmjs.com/package/use-zustand)
 [![size](https://img.shields.io/bundlephobia/minzip/use-zustand)](https://bundlephobia.com/result?p=use-zustand)
 [![discord](https://img.shields.io/discord/627656437971288081)](https://discord.gg/MrQdmzd)
@@ -71,5 +71,5 @@ PORT=8080 yarn run examples:01_counter
 and open <http://localhost:8080> in your web browser.
 
 You can also try them in codesandbox.io:
-[01](https://codesandbox.io/s/github/dai-shi/use-zustand/tree/main/examples/01_counter)
-[02](https://codesandbox.io/s/github/dai-shi/use-zustand/tree/main/examples/02_suspense)
+[01](https://codesandbox.io/s/github/zustandjs/use-zustand/tree/main/examples/01_counter)
+[02](https://codesandbox.io/s/github/zustandjs/use-zustand/tree/main/examples/02_suspense)
