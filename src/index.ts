@@ -39,8 +39,5 @@ export function useZustand<State, Slice>(
     rerender(true);
     return slice;
   }
-  if (!areEqual(sliceFromReducer, slice)) {
-    rerender(true);
-  }
   return sliceFromReducer;
 }
