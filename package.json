@@ -2,22 +2,26 @@
   "name": "use-zustand",
   "description": "Another custom hook to use Zustand vanilla store",
   "version": "0.0.4",
+  "type": "module",
   "author": "Daishi Kato",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dai-shi/use-zustand.git"
+    "url": "https://github.com/zustandjs/use-zustand.git"
   },
   "source": "./src/index.ts",
-  "main": "./dist/index.umd.js",
-  "module": "./dist/index.modern.js",
-  "types": "./dist/src/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "module": "./dist/index.modern.js",
-      "import": "./dist/index.modern.mjs",
-      "default": "./dist/index.umd.js"
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      },
+      "default": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
     }
   },
   "sideEffects": false,
@@ -25,19 +29,19 @@
     "src",
     "dist"
   ],
+  "packageManager": "pnpm@8.15.0",
   "scripts": {
-    "compile": "microbundle build -f modern,umd --globals react=React",
-    "postcompile": "cp dist/index.modern.mjs dist/index.modern.js && cp dist/index.modern.mjs.map dist/index.modern.js.map",
-    "test": "run-s eslint tsc-test jest",
-    "eslint": "eslint --ext .js,.ts,.tsx .",
-    "jest": "jest",
-    "tsc-test": "tsc --project . --noEmit",
-    "examples:01_typescript": "DIR=01_typescript EXT=tsx webpack serve",
-    "examples:02_suspense": "DIR=02_suspense EXT=tsx webpack serve"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "preset": "ts-jest/presets/js-with-ts"
+    "compile": "rm -rf dist && pnpm run '/^compile:.*/'",
+    "compile:esm": "tsc -p tsconfig.esm.json",
+    "compile:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
+    "test": "pnpm run '/^test:.*/'",
+    "test:format": "prettier -c .",
+    "test:lint": "eslint .",
+    "test:types": "tsc -p . --noEmit",
+    "test:types:examples": "tsc -p examples --noEmit",
+    "test:spec": "vitest run",
+    "examples:01_counter": "DIR=01_counter vite",
+    "examples:02_suspense": "DIR=02_suspense vite"
   },
   "keywords": [
     "react",
@@ -46,37 +50,36 @@
     "suspense"
   ],
   "license": "MIT",
-  "dependencies": {},
+  "prettier": {
+    "singleQuote": true
+  },
   "devDependencies": {
-    "@types/jest": "^29.4.0",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.49.0",
-    "@typescript-eslint/parser": "^5.49.0",
-    "eslint": "^8.33.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "html-webpack-plugin": "^5.5.0",
-    "jest": "^29.4.1",
-    "jest-environment-jsdom": "^29.4.1",
-    "microbundle": "^0.15.1",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.3",
-    "react": "^0.0.0-experimental-ee8509801-20230117",
-    "react-dom": "^0.0.0-experimental-ee8509801-20230117",
-    "ts-jest": "^29.0.5",
-    "ts-loader": "^9.4.2",
-    "typescript": "^4.9.4",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1",
-    "zustand": "^4.3.2"
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.4",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.1",
+    "happy-dom": "^14.7.1",
+    "prettier": "^3.2.5",
+    "react": "^19.0.0-beta-94eed63c49-20240425",
+    "react-dom": "^19.0.0-beta-94eed63c49-20240425",
+    "ts-expect": "^1.3.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10",
+    "vitest": "^1.5.2",
+    "zustand": "^4.5.2"
   },
   "peerDependencies": {
-    "react": "*"
+    "react": ">=18.0.0"
   }
 }
