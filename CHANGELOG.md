@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.1.0] - 2024-04-26
+
 ### Changed
 
 - fix a long-lived bug #6
