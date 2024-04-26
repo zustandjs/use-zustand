@@ -4,6 +4,7 @@
 
 ### Changed
 
+- fix a long-lived bug #6
 - Module-first setup #5
 
 ## [0.0.4] - 2023-01-30
