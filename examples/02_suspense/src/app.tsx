@@ -34,10 +34,9 @@ const Post = () => {
 
 const App = () => {
   const [isPending, startTransition] = useTransition();
-  const fetchPostOrig = useZustand(postStore, (state) => state.fetchPost);
   const fetchPost = (id: number) => {
     startTransition(() => {
-      fetchPostOrig(id);
+      postStore.getState().fetchPost(id);
     });
   };
   return (
