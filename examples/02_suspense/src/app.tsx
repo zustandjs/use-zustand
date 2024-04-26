@@ -1,6 +1,6 @@
-/// <reference types="react/experimental" />
+/// <reference types="react/canary" />
 
-import React, { Suspense, use, useTransition } from 'react';
+import { Suspense, use, useTransition } from 'react';
 
 import { createStore } from 'zustand/vanilla';
 import { useZustand } from 'use-zustand';
@@ -34,10 +34,9 @@ const Post = () => {
 
 const App = () => {
   const [isPending, startTransition] = useTransition();
-  const fetchPostOrig = useZustand(postStore, (state) => state.fetchPost);
   const fetchPost = (id: number) => {
     startTransition(() => {
-      fetchPostOrig(id);
+      postStore.getState().fetchPost(id);
     });
   };
   return (

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { createStore } from 'zustand/vanilla';
 import { useZustand } from 'use-zustand';
 
