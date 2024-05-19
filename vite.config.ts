@@ -24,4 +24,3 @@ export default defineConfig(({ mode }) => {
     resolve: { alias: { 'use-zustand': resolve('src') } },
   };
 });
-
