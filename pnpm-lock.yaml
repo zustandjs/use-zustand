@@ -68,6 +68,9 @@ devDependencies:
   typescript:
     specifier: ^5.4.5
     version: 5.4.5
+  use-zustand:
+    specifier: link:.
+    version: 'link:'
   vite:
     specifier: ^5.2.10
     version: 5.2.10(@types/node@20.12.7)
