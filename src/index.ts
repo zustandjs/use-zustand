@@ -31,7 +31,9 @@ export function useZustand<State, Slice>(
     () => [slice, store],
   );
   useEffect(() => {
-    const unsubscribe = store.subscribe(rerender as DispatchWithoutAction);
+    const unsubscribe = store.subscribe(() =>
+      (rerender as DispatchWithoutAction)(),
+    );
     (rerender as DispatchWithoutAction)();
     return unsubscribe;
   }, [store]);
