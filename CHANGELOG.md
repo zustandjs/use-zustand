@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.1.1] - 2024-08-19
+
+### Changed
+
+- fix fromSelf always being truthy #9
+
 ## [0.1.0] - 2024-04-26
 
 ### Changed
