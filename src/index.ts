@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import type { DispatchWithoutAction, Reducer } from 'react';
 import type { StoreApi } from 'zustand';
 
@@ -8,27 +8,29 @@ export function useZustand<State, Slice>(
   areEqual: (a: Slice, b: Slice) => boolean = Object.is,
 ) {
   const state = store.getState();
-  const slice = useMemo(() => selector(state), [state, selector]);
   const [[sliceFromReducer, storeFromReducer], rerender] = useReducer<
-    Reducer<readonly [Slice, StoreApi<State>], boolean | undefined>,
+    Reducer<
+      readonly [Slice, StoreApi<State>, State],
+      readonly [Slice, StoreApi<State>, State] | undefined
+    >,
     undefined
   >(
-    (prev, fromSelf?: boolean) => {
+    (prev, fromSelf) => {
       if (fromSelf) {
-        return [slice, store];
+        return fromSelf;
       }
       const nextState = store.getState();
-      if (Object.is(state, nextState) && prev[1] === store) {
+      if (Object.is(prev[2], nextState) && prev[1] === store) {
         return prev;
       }
       const nextSlice = selector(nextState);
       if (areEqual(prev[0], nextSlice) && prev[1] === store) {
         return prev;
       }
-      return [nextSlice, store];
+      return [nextSlice, store, nextState];
     },
     undefined,
-    () => [slice, store],
+    () => [selector(state), store, state],
   );
   useEffect(() => {
     const unsubscribe = store.subscribe(() =>
@@ -38,7 +40,8 @@ export function useZustand<State, Slice>(
     return unsubscribe;
   }, [store]);
   if (storeFromReducer !== store) {
-    rerender(true);
+    const slice = selector(state);
+    rerender([slice, store, state]);
     return slice;
   }
   return sliceFromReducer;

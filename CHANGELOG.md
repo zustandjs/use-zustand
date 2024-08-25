@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- fix: keep state in reducer #12
+
 ## [0.1.1] - 2024-08-19
 
 ### Changed
