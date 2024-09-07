@@ -10,8 +10,8 @@ export function useZustand<State, Slice>(
   const state = store.getState();
   const [[sliceFromReducer, storeFromReducer], rerender] = useReducer<
     Reducer<
-      readonly [Slice, StoreApi<State>, State],
-      readonly [Slice, StoreApi<State>, State] | undefined
+      [Slice, StoreApi<State>, State],
+      [Slice, StoreApi<State>, State] | undefined
     >,
     undefined
   >(
@@ -25,6 +25,7 @@ export function useZustand<State, Slice>(
       }
       const nextSlice = selector(nextState);
       if (areEqual(prev[0], nextSlice) && prev[1] === store) {
+        prev[2] = nextState;
         return prev;
       }
       return [nextSlice, store, nextState];
