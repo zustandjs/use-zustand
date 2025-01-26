@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from 'react';
-import type { DispatchWithoutAction, Reducer } from 'react';
+import type { DispatchWithoutAction } from 'react';
 import type { StoreApi } from 'zustand';
 
 export function useZustand<State, Slice>(
@@ -9,11 +9,9 @@ export function useZustand<State, Slice>(
 ) {
   const state = store.getState();
   const [[sliceFromReducer, storeFromReducer], rerender] = useReducer<
-    Reducer<
-      readonly [Slice, StoreApi<State>, State],
-      readonly [Slice, StoreApi<State>, State] | undefined
-    >,
-    undefined
+    readonly [Slice, StoreApi<State>, State],
+    undefined,
+    [readonly [Slice, StoreApi<State>, State] | undefined]
   >(
     (prev, fromSelf) => {
       if (fromSelf) {
